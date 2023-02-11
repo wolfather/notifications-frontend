@@ -1,24 +1,20 @@
-import { createContext } from "react";
-import { LogEntity } from "../entity/log.entity";
+import { createContext, Dispatch, SetStateAction, useState } from "react";
+import { LogEntity } from '../entity/log.entity';
 
-type LoggerContext = {
-    viewLogs: () => LogEntity[],
-    appendLog: (param: LogEntity) => void
+export interface LoggerContextProp {
+    logs: LogEntity[];
+    setLogs: Dispatch<SetStateAction<LogEntity[]>>;
 }
 
-export const AppLoggerContext = createContext<LoggerContext|null>(null)
+export const AppLoggerContext = createContext<LoggerContextProp>({
+    logs: [], 
+    setLogs: () => {}
+})
 
 export const AppLoggerProvider = ({children}: any) => {
-    const logs: LogEntity[] = [];
+    const [logs, setLogs] = useState<LogEntity[]>([]);
 
-    const appendLog = (params: LogEntity): void => {
-        logs.push({...params, date: new Date()})
-    };
-
-    const viewLogs = (): LogEntity[] => logs;
-
-
-    return <AppLoggerContext.Provider value={{viewLogs, appendLog}}>
+    return <AppLoggerContext.Provider value={{logs, setLogs}}>
         {children}
     </AppLoggerContext.Provider>
 }

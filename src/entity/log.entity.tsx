@@ -1,6 +1,9 @@
-import { UserEntity } from "./user.entity"
-
 export interface LogEntity {
-    user: UserEntity;
-    date?: Date;    
+    id: string;
+    name: string;
+    email: string;
+    phone_number: string;
+    subscribed: string;
+    channel: string;
+    message: string;
 }

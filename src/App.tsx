@@ -1,13 +1,13 @@
-import { CForm } from './components/Form'
+import { CForm } from './components/CForm'
+import { Log } from './components/Log'
 import { Providers } from './providers'
-import { AppLoggerProvider } from './providers/applogger.provider'
-import { UserProvider } from './providers/user.provider'
 
 function App() {
   return (
     <div className="App">
       <Providers>
         <CForm />
+        <Log />
       </Providers>
     </div>
   )

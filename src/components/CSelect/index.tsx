@@ -15,7 +15,9 @@ type props = SelectHTMLAttributes<HTMLSelectElement> & {
     setSelectValue: Function,
 }
 
-export const CSelect: FC<props> = ({optionsData, selectType, selectValue, setSelectValue, ...rest}: props) => {
+export const CSelect: FC<props> = ({
+    optionsData, selectType, selectValue, setSelectValue, ...rest
+}: props) => {
 
     return(
         <select {...rest}
@@ -23,13 +25,12 @@ export const CSelect: FC<props> = ({optionsData, selectType, selectValue, setSel
             value={selectValue}>
             <option value=''>Choose one {selectType}</option>
             {optionsData.map(optionData => (
-                    <option 
-                        key={optionData.value}
-                        label={optionData.label}
-                        value={optionData.value}>
-                    </option>
-                ))
-            }
+                <option 
+                    key={optionData.value}
+                    label={optionData.label}
+                    value={optionData.value}>
+                </option>
+            ))}
         </select>
     )
 }
