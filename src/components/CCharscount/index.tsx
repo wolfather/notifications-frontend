@@ -3,26 +3,27 @@ import { COLORS } from "../../tokens/colors";
 
 type props = HTMLAttributes<HTMLElement> & {
     limit: number;
-    message: string
+    minCharsAcceptable: number;
+    message: string;
 }
 
-export const CCharscount: FC<props> = ({limit, message, ...rest}: props) => {
+export const CCharscount: FC<props> = ({limit, message, minCharsAcceptable, ...rest}: props) => {
 
     const [textStyle, setStyleColor] = useState<string>('');
 
     const charsRemains = useMemo(() => {
         const charsCalc = limit - message.length;
 
-        setStyleColor(message.length < 10 ? COLORS.danger : COLORS.ok);
+        setStyleColor(message.length < minCharsAcceptable ? COLORS.danger : COLORS.ok);
         
         return charsCalc > 1 ? 
-            `${charsCalc} chars remains` : 
-            `${charsCalc} char remain`;
+            `${charsCalc} chars remaining` : 
+            `${charsCalc} char remaining`;
     }, [message]);
 
     return (
         <small
-            role='tooltip'
+            data-test-id="char-counter"
             {...rest}
             style={{color: textStyle}} 
             className='float-right text-xs'>{charsRemains}</small>

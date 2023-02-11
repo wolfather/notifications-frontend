@@ -1,11 +1,13 @@
 import React from "react";
-import { render, screen, waitFor } from "@testing-library/react"
+import { cleanup, render } from "@testing-library/react"
+import '@testing-library/jest-dom/extend-expect';
 import { CButton } from '../../../src/components/CButton'
 
 describe('CButton', () => {
+    afterEach(cleanup)
     test('should be defined', () => {
         let buttonState = false
-        const { getByRole, getByLabelText } = render(<CButton buttonType="submit" label="Submit" isDisabled={buttonState} />)
+        const { getByLabelText } = render(<CButton buttonType="submit" label="Submit" isDisabled={buttonState} />)
 
         const btn = getByLabelText('Submit')
 
@@ -21,13 +23,4 @@ describe('CButton', () => {
         expect(btn).toHaveProperty('type', 'submit')
         //expect(btn).toHaveProperty('disabled')
     })
-
-    // test('should not have the disabled property', () => {
-    //     let buttonState = true
-    //     const { getByLabelText } = render(<CButton buttonType="submit" label="Submit" isDisabled={buttonState} />)
-
-    //     const btn = getByLabelText('Submit')
-
-    //     expect(btn).not.toHaveAttribute('disabled')
-    // })
 })

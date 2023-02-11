@@ -26,6 +26,7 @@ const _CTextarea: FC<props> = ({
             <div>
                 <CCharscount 
                     limit={charLimit} 
+                    minCharsAcceptable={10}
                     message={textareaMessage} />
             </div>
         </div>
