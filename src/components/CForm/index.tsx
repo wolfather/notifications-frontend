@@ -83,7 +83,6 @@ export const CForm: FC<{}> = () => {
             </div>
             <div className="container mb-2">
                 <CTextarea 
-                    className="resize-none"
                     charLimit={MAX_TEXTAREA_VALUES} 
                     setTextareaMessage={setMessage} 
                     textareaMessage={message}
@@ -94,6 +93,7 @@ export const CForm: FC<{}> = () => {
             <div className="container clear-both content-center flex items-stretch">
                 <CButton 
                     label="Submit" 
+                    buttonType="submit"
                     isDisabled={!validateForm} />
             </div>
         </form>

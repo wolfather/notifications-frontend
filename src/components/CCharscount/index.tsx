@@ -21,7 +21,8 @@ export const CCharscount: FC<props> = ({limit, message, ...rest}: props) => {
     }, [message]);
 
     return (
-        <small 
+        <small
+            role='tooltip'
             {...rest}
             style={{color: textStyle}} 
             className='float-right text-xs'>{charsRemains}</small>

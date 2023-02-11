@@ -21,7 +21,7 @@ export const CSelect: FC<props> = ({
 
     return(
         <select {...rest}
-            className="w-full"
+            className="w-full border border-teal-900 bg-white"
             onChange={(e) => setSelectValue(e.target.value)}
             value={selectValue}>
             <option value=''>Choose one {selectType}</option>

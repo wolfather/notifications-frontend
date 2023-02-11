@@ -17,6 +17,7 @@ const _CTextarea: FC<props> = ({
     return (
         <div className="container">
             <textarea {...rest}
+                className="resize-none border border-teal-900"
                 maxLength={charLimit}
                 value={textareaMessage} 
                 onChange={(e) => setTextareaMessage(e.target.value)}>

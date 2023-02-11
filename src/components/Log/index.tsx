@@ -6,10 +6,11 @@ export const Log: FC<{}> = () => {
     
     const isCollapsed = logs.length ? 'non-collapsed' : 'collapsed'
 
-    return (<aside className="bg-slate-600 ">{
+    return (<aside className="bg-indigo-200 py-2 px-2">{
         logs.length ? 
         logs.map(log => (
-            <div key={log.id} className="py-4 px-4 max-w-sm mx-auto bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
+            <div key={log.id} 
+                className="h-2 min-h-full my-20 py-4 px-4 max-w-sm mx-auto bg-white shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
                 <p className="text-lg text-black font-semibold">{log.name}</p>
                 <div className="text-slate-500 font-medium">
                     <p>{log.channel}</p>
