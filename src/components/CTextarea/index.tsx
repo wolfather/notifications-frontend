@@ -1,4 +1,5 @@
-import { FC, TextareaHTMLAttributes, useMemo } from "react";
+import { FC, memo, TextareaHTMLAttributes } from "react";
+import { CCharscount } from "../CCharscount";
 
 type props = TextareaHTMLAttributes<HTMLTextAreaElement> & {
     charLimit: number;
@@ -6,25 +7,28 @@ type props = TextareaHTMLAttributes<HTMLTextAreaElement> & {
     setTextareaMessage: Function;
 }
 
-export const CTextarea: FC<props> = ({
+const _CTextarea: FC<props> = ({
     charLimit, 
     textareaMessage, 
     setTextareaMessage, 
     ...rest
 }: props) => {
 
-    const charsRemains = useMemo(() => {
-        return charLimit - textareaMessage.length
-    }, [textareaMessage])
+    return (
+        <div className="container">
+            <textarea {...rest}
+                maxLength={charLimit}
+                value={textareaMessage} 
+                onChange={(e) => setTextareaMessage(e.target.value)}>
+            </textarea>
 
-    return (<>
-        <textarea {...rest}
-            maxLength={charLimit}
-            value={textareaMessage} 
-            onChange={(e) => setTextareaMessage(e.target.value)} />
-
-        <div>
-            <small>{charsRemains} chars remains</small>
+            <div>
+                <CCharscount 
+                    limit={charLimit} 
+                    message={textareaMessage} />
+            </div>
         </div>
-    </>)
+    )
 }
+
+export const CTextarea = memo(_CTextarea)

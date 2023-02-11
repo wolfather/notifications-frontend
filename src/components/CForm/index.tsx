@@ -65,26 +65,37 @@ export const CForm: FC<{}> = () => {
         }
     };
 
-    return (<>
+    return (<section className="container">
         <form onSubmit={(e) => submitForm(e)}>
-            <CSelect 
-                selectType="category" 
-                optionsData={CATEGORIES}
-                setSelectValue={setCategoryValue}
-                selectValue={categoryValue} />
-            <CSelect 
-                selectType="notification" 
-                optionsData={NOTIFICATIONS}
-                setSelectValue={setNotificationValue}
-                selectValue={notificationValue} />
-            <CTextarea 
-                charLimit={MAX_TEXTAREA_VALUES} 
-                setTextareaMessage={setMessage} 
-                textareaMessage={message}
-                rows={5}
-                cols={50} />
+            <div className="container mb-2">
+                <CSelect 
+                    selectType="category" 
+                    optionsData={CATEGORIES}
+                    setSelectValue={setCategoryValue}
+                    selectValue={categoryValue} />
+            </div>
+            <div className="container mb-2">
+                <CSelect 
+                    selectType="notification" 
+                    optionsData={NOTIFICATIONS}
+                    setSelectValue={setNotificationValue}
+                    selectValue={notificationValue} />
+            </div>
+            <div className="container mb-2">
+                <CTextarea 
+                    className="resize-none"
+                    charLimit={MAX_TEXTAREA_VALUES} 
+                    setTextareaMessage={setMessage} 
+                    textareaMessage={message}
+                    rows={5}
+                    cols={50} />
+            </div>
 
-            <CButton label="Submit" isDisabled={!validateForm} />
+            <div className="container clear-both content-center flex items-stretch">
+                <CButton 
+                    label="Submit" 
+                    isDisabled={!validateForm} />
+            </div>
         </form>
-    </>)
+    </section>)
 }
