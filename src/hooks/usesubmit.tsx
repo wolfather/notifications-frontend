@@ -42,7 +42,6 @@ export const useSubmit = ({notificationValue, categoryValue, message}: props) =>
 
         setNotify(true);
 
-        console.log('called!')
         setUserSelected({});
 
     }, [userSelected, notificationValue, categoryValue, message]);
