@@ -25,7 +25,7 @@ export const NotificationContext = createContext<NotificationContextProps>({
 export const NotificationProvider = ({children}: any) => {
     const [notificationData, setNotificationData] = useState<NotificationEntity>({} as NotificationEntity);
     const [notify, setNotify] = useState<boolean>(false);
-    const DURATION = 222000;
+    const DURATION = 2000;
 
     useEffect(() => {
         if(notify) {
