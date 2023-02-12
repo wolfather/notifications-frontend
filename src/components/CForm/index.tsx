@@ -3,12 +3,11 @@ import { FC, FormEvent, useCallback, useContext, useMemo, useState } from "react
 import { CButton } from "../CButton";
 import { CTextarea } from "../CTextarea";
 import { CSelect } from "../CSelect";
-import { CATEGORIES, NOTIFICATIONS } from "../../enum/categories";
+import { CATEGORIES } from "../../enum/categories";
+import { NOTIFICATIONS } from '../../enum/notifications';
 import { UserContext, UserContextProp } from "../../providers/user.provider";
 import { AppLoggerContext, LoggerContextProp } from "../../providers/applogger.provider";
-import { LogEntity } from "../../entity/log.entity";
 import { LogFactory } from "../../factory/log.factory";
-
 
 export const CForm: FC<{}> = () => {
     const [message, setMessage] = useState<string>('');
@@ -17,7 +16,7 @@ export const CForm: FC<{}> = () => {
 
     const MAX_TEXTAREA_VALUES = Object.freeze(100);
     
-    const {user, setUser} = useContext<UserContextProp>(UserContext);
+    const {userSelected, setUserSelected} = useContext<UserContextProp>(UserContext);
     const {setLogs} = useContext<LoggerContextProp>(AppLoggerContext);
     
     const validateForm = useMemo(() => {
@@ -34,36 +33,37 @@ export const CForm: FC<{}> = () => {
         setNotificationValue('')
     };
 
-    const submitForm = (e: FormEvent<HTMLFormElement>) => {
+    const submitForm = useCallback((e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const _channels = new Set(user.channels)
-        const _subscribed = new Set(user.subscribed)
+        const _channels = new Set(userSelected.channels)
+        const _subscribed = new Set(userSelected.subscribed)
 
         if(validateForm) {
             _channels.add(notificationValue)
             _subscribed.add(categoryValue)
 
-            setUser(prev => ({
+            setUserSelected(prev => ({
                 ...prev, 
                 channels : Array.from(_channels),
                 subscribed: Array.from(_subscribed)
             }));
 
             const userLogData = LogFactory(
-                user, 
+                userSelected, 
                 notificationValue, 
                 categoryValue,
                 message
             );
 
-            setLogs(prev => [...prev, userLogData])
+            setLogs(prev => [...prev, userLogData]);
+            setUserSelected({});
             
             resetForm();
             
             console.log('Submitted!')
         }
-    };
+    }, [userSelected, notificationValue, categoryValue, message]);
 
     return (<section className="container">
         <form onSubmit={(e) => submitForm(e)}>
@@ -90,7 +90,7 @@ export const CForm: FC<{}> = () => {
                     cols={50} />
             </div>
 
-            <div className="container clear-both content-center flex items-stretch">
+            <div className="container clear-both flex items-stretch">
                 <CButton 
                     label="Submit" 
                     buttonType="submit"

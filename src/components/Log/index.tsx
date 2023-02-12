@@ -4,18 +4,25 @@ import { LoggerContextProp, AppLoggerContext } from "../../providers/applogger.p
 export const Log: FC<{}> = () => {
     const { logs } = useContext<LoggerContextProp>(AppLoggerContext);
     
-    const isCollapsed = logs.length ? 'non-collapsed' : 'collapsed'
-
-    return (<aside className="bg-indigo-200 py-2 px-2">{
+    return (<aside className="bg-indigo-200 py-2 overflow-auto">{
         logs.length ? 
         logs.map(log => (
             <div key={log.id} 
-                className="h-2 min-h-full my-20 py-4 px-4 max-w-sm mx-auto bg-white shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
-                <p className="text-lg text-black font-semibold">{log.name}</p>
-                <div className="text-slate-500 font-medium">
-                    <p>{log.channel}</p>
-                    <p>{log.subscribed}</p>
-                    <p>{log.message}</p>
+                className="h-32 min-h-0 my-6 mx-4 py-4 px-4 max-w-sm bg-white rounded shadow-lg space-y-1 sm:py-2 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
+                <p className="text-md text-black font-semibold">{log.name}</p>
+                <div className="text-slate-500 font-medium leading-3">
+                    <dl className="mb-2">
+                        <dt className="text-black text-sm">channel</dt>
+                        <dd className="text-xs">{log.channel}</dd>
+                    </dl>
+                    <dl className="mb-2">
+                        <dt className="text-black text-sm">subscription:</dt>
+                        <dd className="text-xs">{log.subscribed}</dd>
+                    </dl>
+                    <dt>
+                        <dt className="text-black text-sm">Message:</dt>
+                        <dd className="text-xs">{log.message}</dd>
+                    </dt>
                 </div>
             </div>
         )) : 

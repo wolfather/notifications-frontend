@@ -5,6 +5,7 @@ import {
     forwardRef, 
     useImperativeHandle, 
     useState,
+    memo,
 } from 'react';
 import { SelectEntity } from '../../entity/select.entity';
 
@@ -15,7 +16,7 @@ type props = SelectHTMLAttributes<HTMLSelectElement> & {
     setSelectValue: Function,
 }
 
-export const CSelect: FC<props> = ({
+export const _CSelect: FC<props> = ({
     optionsData, selectType, selectValue, setSelectValue, ...rest
 }: props) => {
 
@@ -35,3 +36,5 @@ export const CSelect: FC<props> = ({
         </select>
     )
 }
+
+export const CSelect = memo(_CSelect)

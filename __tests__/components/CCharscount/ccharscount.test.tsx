@@ -6,8 +6,7 @@ import { CCharscount } from '../../../src/components/CCharscount'
 describe('CCharscount Component', () => {
     afterEach(cleanup)
     it('should be in the document', () => {
-        const stub_message = 'some message';
-        const stub_limit = 20;
+        const stub_limit = 2;
 
         const { getByText } = render(
             <CCharscount 
@@ -17,7 +16,6 @@ describe('CCharscount Component', () => {
         );
 
         const element = getByText(/remaining/i);
-
         expect(element).toBeInTheDocument()
     })
 

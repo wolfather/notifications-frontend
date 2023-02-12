@@ -8,11 +8,14 @@ export const LogFactory = (
     categoryValue: string,
     message: string
 ): LogEntity => {
+    const {id, name, email, phone_number} = userData;
+    
     const userLogData: LogEntity = {
-        id: uuid.v4(),
-        name: userData?.name || '',
-        email: userData?.email || '',
-        phone_number: userData?.phone_number || '',
+        date: new Date(),
+        id: id || '',
+        name: name || '',
+        email: email || '',
+        phone_number: phone_number || '',
         subscribed: categoryValue,
         channel: notificationValue,
         message

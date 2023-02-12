@@ -1,19 +1,21 @@
 import { CForm } from './components/CForm'
+import { Navbar } from './components/Navbar'
 import { Log } from './components/Log'
 import { Providers } from './providers'
 
 function App() {
   return (
-    <div className="App flex columns-2">
+    <>
       <Providers>
-        <main className='pl-6 mr-6'>
-          <h1 className="mb-6 text-3xl font-bold underline">Notifications</h1>
-
-          <CForm />
-        </main>
-        <Log />
+        <Navbar />
+        <section className='flex columns-2'>
+          <main className='pl-6 mr-6'>
+            <CForm />
+          </main>
+          <Log />
+        </section>
       </Providers>
-    </div>
+    </>
   )
 }
 

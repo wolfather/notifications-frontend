@@ -6,4 +6,5 @@ export interface LogEntity {
     subscribed: string;
     channel: string;
     message: string;
+    date: Date;
 }
