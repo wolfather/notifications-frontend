@@ -1,4 +1,5 @@
 import { FC, HTMLAttributes, ReactNode } from "react";
+import { COLORS } from "../../tokens/colors";
 
 type props = HTMLAttributes<HTMLDivElement> & {
     children: JSX.Element | ReactNode | Element;
@@ -6,15 +7,9 @@ type props = HTMLAttributes<HTMLDivElement> & {
 }
 
 export const BoxColor: FC<props> = ({children, channel, ...rest}: props) => {
-    const color: any = {
-        push_notification : '#0891b2', 
-        email: '#fef08a', 
-        sms: '#fda4af'
-    };
-
     return (
         <div 
-            style={{'background': color[channel]}} 
+            style={{'background': COLORS[channel]}} 
             {...rest}>{children}
         </div>
     )
