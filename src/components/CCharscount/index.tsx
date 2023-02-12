@@ -1,5 +1,6 @@
 import { FC, HTMLAttributes, useMemo, useState } from "react";
 import { COLORS } from "../../tokens/colors";
+import { styles } from "./styles";
 
 type props = HTMLAttributes<HTMLElement> & {
     limit: number;
@@ -8,7 +9,6 @@ type props = HTMLAttributes<HTMLElement> & {
 }
 
 export const CCharscount: FC<props> = ({limit, message, minCharsAcceptable, ...rest}: props) => {
-
     const [textStyle, setStyleColor] = useState<string>('');
 
     const charsRemains = useMemo(() => {
@@ -26,6 +26,6 @@ export const CCharscount: FC<props> = ({limit, message, minCharsAcceptable, ...r
             data-test-id="char-counter"
             {...rest}
             style={{color: textStyle}} 
-            className='float-right text-xs'>{charsRemains}</small>
+            className={styles.smallComponent}>{charsRemains}</small>
     );
 }

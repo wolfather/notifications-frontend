@@ -1,6 +1,5 @@
 import { LogEntity } from './../entity/log.entity';
 import { UserEntity } from './../entity/user.entity';
-import * as uuid from 'uuid';
 
 export const LogFactory = (
     userData: Partial<UserEntity>, 

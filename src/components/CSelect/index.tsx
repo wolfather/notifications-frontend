@@ -8,6 +8,7 @@ import {
     memo,
 } from 'react';
 import { SelectEntity } from '../../entity/select.entity';
+import { styles } from './styles';
 
 type props = SelectHTMLAttributes<HTMLSelectElement> & {
     selectType: 'category' | 'notification',
@@ -22,7 +23,7 @@ export const _CSelect: FC<props> = ({
 
     return(
         <select {...rest}
-            className="w-full border border-teal-900 bg-white"
+            className={styles.select}
             onChange={(e) => setSelectValue(e.target.value)}
             value={selectValue}>
             <option value=''>Choose one {selectType}</option>

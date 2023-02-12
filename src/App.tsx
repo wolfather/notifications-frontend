@@ -1,18 +1,18 @@
 import { CForm } from './components/CForm'
-import { Navbar } from './components/Navbar'
-import { Log } from './components/Log'
+import { CNavbar } from './components/CNavbar'
+import { CLog } from './components/CLog'
 import { Providers } from './providers'
 
 function App() {
   return (
     <>
       <Providers>
-        <Navbar />
+        <CNavbar />
         <section className='flex columns-2'>
           <main className='pl-6 mr-6'>
             <CForm />
           </main>
-          <Log />
+          <CLog />
         </section>
       </Providers>
     </>

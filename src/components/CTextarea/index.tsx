@@ -1,5 +1,6 @@
 import { FC, memo, TextareaHTMLAttributes } from "react";
 import { CCharscount } from "../CCharscount";
+import { styles } from "./styles";
 
 type props = TextareaHTMLAttributes<HTMLTextAreaElement> & {
     charLimit: number;
@@ -15,9 +16,9 @@ const _CTextarea: FC<props> = ({
 }: props) => {
 
     return (
-        <div className="container">
+        <div className={styles.container}>
             <textarea {...rest}
-                className="resize-none border border-teal-900"
+                className={styles.textarea}
                 maxLength={charLimit}
                 value={textareaMessage} 
                 onChange={(e) => setTextareaMessage(e.target.value)}>
