@@ -39,7 +39,7 @@ export const CForm: FC<{}> = () => {
         const _channels = new Set(userSelected.channels)
         const _subscribed = new Set(userSelected.subscribed)
 
-        if(validateForm) {
+        if(validateForm && userSelected.id) {
             _channels.add(notificationValue)
             _subscribed.add(categoryValue)
 
