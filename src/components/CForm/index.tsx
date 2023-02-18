@@ -22,9 +22,10 @@ export const CForm: FC<{}> = () => {
         return (
             categoryValue !== '' && 
             notificationValue !== '' &&
-            message.length >= (MAX_TEXTAREA_VALUES / 10)
+            userSelected.name !== '' &&
+            message.length >= 1//(MAX_TEXTAREA_VALUES / 10)
         )
-    }, [categoryValue, notificationValue, message]);
+    }, [categoryValue, notificationValue, userSelected, message]);
 
     const resetValues = () => {
         setMessage('');

@@ -15,7 +15,7 @@ export const CButton: FC<props> = ({isDisabled, label, buttonType, ...rest}: pro
             type="submit" 
             value={label}
             aria-label={label} 
-            className={styles.btnSubmitStyle}
+            className={styles.btnSubmit}
             disabled={isDisabled} />
     )
 }

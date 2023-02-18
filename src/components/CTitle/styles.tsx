@@ -1,3 +1,3 @@
 export const styles = {
-    title : 'mb-6 text-2l font-bold underline clear-both'
+    title : 'mb-2 text-5 font-bold clear-both'
 }
