@@ -4,7 +4,6 @@ export interface LogEntity {
     email: string;
     phone_number: string;
     subscribed: string;
-    channel: string;
     message: string;
-    date: Date;
+    date: number;
 }

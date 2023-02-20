@@ -4,33 +4,27 @@ import { CButton } from "../CButton";
 import { CTextarea } from "../CTextarea";
 import { CSelect } from "../CSelect";
 import { CATEGORIES } from "../../enum/categories";
-import { NOTIFICATIONS } from '../../enum/notifications';
 import { styles } from "./styles";
 import { useSubmit } from "../../hooks/usesubmit";
 
 export const CForm: FC<{}> = () => {
     const [message, setMessage] = useState<string>('');
     const [categoryValue, setCategoryValue] = useState<string>('');
-    const [notificationValue, setNotificationValue] = useState<string>('');
-
+    
     const MAX_TEXTAREA_VALUES = Object.freeze(100);
     
-    const { userSelected, onSubmitForm } = useSubmit({
-        notificationValue, categoryValue, message
-    });
+    const { userSelected, onSubmitForm } = useSubmit({categoryValue, message});
     const validateForm = useMemo(() => {
         return (
             categoryValue !== '' && 
-            notificationValue !== '' &&
             userSelected.name !== '' &&
-            message.length >= 1//(MAX_TEXTAREA_VALUES / 10)
+            message.length >= 1
         )
-    }, [categoryValue, notificationValue, userSelected, message]);
+    }, [categoryValue, userSelected, message]);
 
     const resetValues = () => {
         setMessage('');
         setCategoryValue('');
-        setNotificationValue('');
     };
 
     const submitForm = (e: FormEvent<HTMLFormElement>) => {
@@ -53,13 +47,7 @@ export const CForm: FC<{}> = () => {
                         setSelectValue={setCategoryValue}
                         selectValue={categoryValue} />
                 </div>
-                <div className={styles.fields}>
-                    <CSelect 
-                        selectType='notification' 
-                        optionsData={NOTIFICATIONS}
-                        setSelectValue={setNotificationValue}
-                        selectValue={notificationValue} />
-                </div>
+                
                 <div className={styles.fields}>
                     <CTextarea 
                         charLimit={MAX_TEXTAREA_VALUES} 

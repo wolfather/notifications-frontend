@@ -1,4 +1,4 @@
-import { createContext, Dispatch, SetStateAction, useState } from "react";
+import { createContext, Dispatch, ReactNode, SetStateAction, useState } from "react";
 import * as uuid from 'uuid'
 import { UserEntity } from "../entity/user.entity";
 
@@ -43,7 +43,11 @@ export const UserContext = createContext<UserContextProp>({
     setUserSelected: () => {}
 });
 
-export const UserProvider = ({children}: any) => {
+type props = {
+    children: ReactNode
+}
+
+export const UserProvider = ({children}: props) => {
     const [users, setUsers] = useState<Partial<UserEntity>[]>(mock_users);
     const [userSelected, setUserSelected] = useState<Partial<UserEntity>>({});
 

@@ -5,5 +5,5 @@ export interface UserEntity {
     phone_number: string;
     subscribed: string[];
     channels: string[];
-    date: Date;
+    date: number;
 }

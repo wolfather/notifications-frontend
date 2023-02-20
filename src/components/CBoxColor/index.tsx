@@ -3,14 +3,11 @@ import { COLORS } from "../../tokens/colors";
 
 type props = HTMLAttributes<HTMLDivElement> & {
     children: JSX.Element | ReactNode | Element;
-    channel: string;
 }
 
-export const BoxColor: FC<props> = ({children, channel, ...rest}: props) => {
+export const BoxColor: FC<props> = ({children, ...rest}: props) => {
+    // style={{'background': COLORS[channel]}}
     return (
-        <div 
-            style={{'background': COLORS[channel]}} 
-            {...rest}>{children}
-        </div>
+        <div {...rest}>{children}</div>
     )
 } 

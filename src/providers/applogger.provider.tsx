@@ -1,4 +1,4 @@
-import { createContext, Dispatch, SetStateAction, useState } from "react";
+import { createContext, Dispatch, ReactNode, SetStateAction, useEffect, useState } from "react";
 import { LogEntity } from '../entity/log.entity';
 
 export interface LoggerContextProp {
@@ -8,10 +8,14 @@ export interface LoggerContextProp {
 
 export const AppLoggerContext = createContext<LoggerContextProp>({
     logs: [], 
-    setLogs: () => {}
+    setLogs: () => {},
 })
 
-export const AppLoggerProvider = ({children}: any) => {
+type props = {
+    children: ReactNode
+}
+
+export const AppLoggerProvider = ({children}: props) => {
     const [logs, setLogs] = useState<LogEntity[]>([]);
 
     return <AppLoggerContext.Provider value={{logs, setLogs}}>

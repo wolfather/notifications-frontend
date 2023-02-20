@@ -1,7 +1,6 @@
 import { UserEntity } from './user.entity';
 
 export interface NotificationEntity {
-    subscription: string;
-    channel: string;
+    category: string;
     user: Partial<UserEntity>;
 }

@@ -1,22 +1,20 @@
-import { LogEntity } from './../entity/log.entity';
-import { UserEntity } from './../entity/user.entity';
+import { LogEntity } from '../entity/log.entity';
+import { UserEntity } from '../entity/user.entity';
 
-export const LogFactory = (
+export const userLogFactory = (
     userData: Partial<UserEntity>, 
-    notificationValue: string, 
     categoryValue: string,
     message: string
 ): LogEntity => {
     const {id, name, email, phone_number} = userData;
     
     const userLogData: LogEntity = {
-        date: new Date(),
+        date: new Date().getTime(),
         id: id || '',
         name: name || '',
         email: email || '',
         phone_number: phone_number || '',
         subscribed: categoryValue,
-        channel: notificationValue,
         message
     };
 
