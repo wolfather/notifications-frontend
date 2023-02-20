@@ -6,8 +6,5 @@ type props = HTMLAttributes<HTMLDivElement> & {
 }
 
 export const BoxColor: FC<props> = ({children, ...rest}: props) => {
-    // style={{'background': COLORS[channel]}}
-    return (
-        <div {...rest}>{children}</div>
-    )
+    return (<div {...rest}>{children}</div>)
 } 

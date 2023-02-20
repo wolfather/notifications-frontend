@@ -20,14 +20,17 @@ export const NotificationContext = createContext<NotificationContextProps>({
     setNotificationData: () => {}
 });
 
-export const NotificationProvider = () => {
+type props = {
+    children: ReactNode;
+}
+
+export const NotificationProvider = ({children}: props) => {
     const [notificationData, setNotificationData] = useState<NotificationEntity>({} as NotificationEntity);
     const [notify, setNotify] = useState<boolean>(false);
-    const DURATION = 14000;
+    const DURATION = 2000;
     const [notificationUI, setNotificationUI] = useState<any[]>([]);
 
     useEffect(() => {
-        //setNotificationUI([])
         if(notify) {
             const worker = new Worker('../../service.worker.js');
             
@@ -57,20 +60,21 @@ export const NotificationProvider = () => {
                 setNotificationUI([]);
             };
         }
-    }, [notify])
+    }, [notify]);
 
     return <NotificationContext.Provider value={{
         notify, setNotify, notificationData, setNotificationData
     }}>
-        <div>
-            {
-            notify ? 
+        <div>{
+            notify && notificationUI.length ? 
             notificationUI.map((notification, index) => (
                 <CNotification 
                     key={index}
                     data={notification} />
             ))
-             : <></>}
+             : <></>
+        }
+        {children}
         </div>
     </NotificationContext.Provider>
 }

@@ -2,16 +2,13 @@ import { lazy } from "react";
 
 type props = {
     path: string;
-    name: string;
-  }
+}
   
-const lazyLoadingComponent = ({path, name}: props) => {
-    const promise = import(path);
-    
+const lazyLoadingComponent = ({path}: props) => {
+    const name = path.split('/').pop() || '';
     return lazy(() => (
-        promise.then(component => ({default: component[name]})))
+        import(/* @vite-ignore */path).then(component => ({default: component[name]})))
     )
-
 }
 
 export default lazyLoadingComponent

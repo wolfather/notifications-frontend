@@ -1,20 +1,22 @@
-//import { CForm } from './components/CForm';
+import { CLog } from './components/CLog';
+import { CNavbar } from './components/CNavbar';
+import { CForm } from './components/CForm';
 
-import lazyLoadingComponent from './lazyloadingcomponent';
 import { Providers } from './providers';
+import { Suspense } from 'react';
+import lazyLoadingComponent from './lazyloadingcomponent';
+import { CLoadingComponent } from './components/CLoading/CLoading.compoent';
 
-import { Suspense } from 'react'
-
-
-const CForm = lazyLoadingComponent({path: './components/CForm', name: 'CForm'});
-const CNavbar = lazyLoadingComponent({path: './components/CNavbar', name: 'CNavbar'});
-const CLog = lazyLoadingComponent({path: './components/CLog', name: 'CLog'});
+// const CLog = lazyLoadingComponent({path: './components/CLog'})
+// const CNavbar = lazyLoadingComponent({path: './components/CNavbar'})
+// const CForm = lazyLoadingComponent({path: './components/CForm'})
 
 function App() {
   return (
     <>
       <Providers>
-        <Suspense fallback={<p>loading...</p>}>
+        <Suspense fallback={<CLoadingComponent />}>
+
           <CNavbar />
           <section className='flex columns-2'>
             <main className='pl-6 mr-6'>

@@ -1,3 +1,4 @@
+import { useLogSort } from "../hooks/uselogsort";
 import { createContext, Dispatch, ReactNode, SetStateAction, useEffect, useState } from "react";
 import { LogEntity } from '../entity/log.entity';
 
@@ -17,6 +18,12 @@ type props = {
 
 export const AppLoggerProvider = ({children}: props) => {
     const [logs, setLogs] = useState<LogEntity[]>([]);
+
+    useEffect(() => {
+        setLogs(useLogSort(logs));
+
+        return () => {};
+    }, [logs]);
 
     return <AppLoggerContext.Provider value={{logs, setLogs}}>
         {children}

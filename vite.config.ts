@@ -1,17 +1,15 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-
-import { comlink } from 'vite-plugin-comlink';
-
+import path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    react(), 
-    comlink()
-  ],
-  worker: {
-    plugins: [
-      comlink()
+  plugins: [react()],
+  resolve: {
+    alias: [
+      {
+        find: 'src',
+        replacement: path.resolve(__dirname, './src'),
+      },  
     ]
   }
 })

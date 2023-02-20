@@ -17,10 +17,7 @@
     "jsx": "react-jsx",
     "strictFunctionTypes": true,
     "strictNullChecks": true,
-    "baseUrl": "./src",
-    "paths": {
-      "pages": ["./src/components"]
-    }
+    "baseUrl": "src"
   },
   "include": [
     "src"
