@@ -53,7 +53,7 @@ export const NotificationProvider = ({children}: props) => {
             const notifyTimer = setTimeout(() => {
                 setNotificationData({} as NotificationEntity);
                 setNotify(false);
-            }, Math.round(DURATION * Math.random()));
+            }, DURATION);
 
             return () => {
                 clearTimeout(notifyTimer);
