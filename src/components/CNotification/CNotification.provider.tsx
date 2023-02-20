@@ -64,7 +64,7 @@ export const NotificationProvider = () => {
     }}>
         <div>
             {
-            notify && notificationUI.length ? 
+            notify ? 
             notificationUI.map((notification, index) => (
                 <CNotification 
                     key={index}
